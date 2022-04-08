@@ -1,7 +1,3 @@
-from dataclasses import dataclass
-from typing import Optional
-
-
 class Creature:
     conscious: bool
     humanoid: bool
@@ -14,17 +10,6 @@ class Creature:
 
 
 class Human(Creature):
-    first_name: str
-    last_name: Optional[str]
-    age: int
-    parent1_id: int
-    parent2_id: Optional[int]
-    gender: str
-    country: str
-
-    def speech(self, words):
-        print(f"{self.first_name} says '{words}'")
-
     def __init__(self, id, first_name, last_name, age, parent1_id, gender, country, parent2_id=None):
         self.conscious = True
         self.humanoid = True
@@ -36,31 +21,32 @@ class Human(Creature):
         self.gender = gender
         self.country = country
         self.parent2_id = parent2_id
+
+    def speech(self, words):
+        print(f"{self.first_name} says '{words}'")
         
 
-
 class Dogs(Creature):
-    conscious = True
-    humanoid = False
-    name: str
-    age: int
-    gender: str
+    def __init__(self, name, age, breed=None):
+        self.conscious = True
+        self.humanoid = False
+        self.name = name
+        self.age = age
+        self.breed = breed
 
     def bark(self, sound):
         print(f"{self.name} barks '{sound}'")
 
 
-@dataclass
 class Bacteria(Creature):
-    conscious = False
-    humanoid = False
-    name: str
+    def __init__(self, name, age):
+        self.conscious = False
+        self.humanoid = False
+        self.name = name
+        self.age = age
 
-    def dn(self, amount):
-        print(f"{self.name} do nothing for {amount} secs")
-
-
-clarissa = Human
+    def dn(self, at):
+        print(f"{self.name} do nothing for {at} secs")
 
 
 if __name__ == '__main__':
